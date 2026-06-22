@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>LasandMagic — Nintendo Switch</title>
+<style>
+  :root{
+    --bg1:#071028;
+    --bg2:#102a4a;
+    --accent:#ffcc33;
+    --card:#0f1724;
+    --text:#e6eef8;
+    --muted:#9fb0d6;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--text);}
+  .container{max-width:1100px;margin:36px auto;padding:24px;}
+  .logo-box{
+    width:120px;height:120px;border-radius:16px;
+    background:linear-gradient(135deg,#ff9f1c,#ff3d7f);
+    display:flex;align-items:center;justify-content:center;font-weight:800;color:#071025;font-size:36px;
+    box-shadow:0 12px 36px rgba(0,0,0,0.45);
+    margin:0 auto 12px;
+  }
+  .brand{text-align:center;margin-bottom:6px}
+  .brand h1{margin:0;font-size:30px;letter-spacing:1px;}
+  .brand p{margin:6px 0 0;color:var(--muted);font-size:14px}
+
+  .hero{
+    margin-top:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    border-radius:12px;padding:28px;box-shadow:0 6px 30px rgba(2,6,23,0.6);
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+  }
+  .cta-text{font-weight:700;letter-spacing:2px;color:var(--accent);margin:14px 0}
+  .subtext{color:var(--muted);font-size:14px;margin-bottom:18px}
+
+  /* Grid de juegos */
+  .games{
+    width:100%;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:18px;
+    justify-items:center;
+  }
+  @media (max-width:900px){ .games{grid-template-columns: repeat(2, 1fr);} }
+  @media (max-width:520px){ .games{grid-template-columns: 1fr;} }
+
+  .game-card{
+    width:100%;max-width:320px;border-radius:12px;background:linear-gradient(180deg,var(--card),#071025);
+    padding:12px;display:flex;flex-direction:column;gap:10px;align-items:center;box-shadow:0 8px 20px rgba(2,6,23,0.6);
+    text-decoration:none;color:var(--text);border:1px solid rgba(255,255,255,0.02);
+  }
+  .cover{
+    width:100%;height:160px;border-radius:8px;overflow:hidden;background:#0b1220;display:flex;align-items:center;justify-content:center;
+  }
+  .cover img{width:100%;height:100%;object-fit:cover;display:block}
+  .game-title{font-weight:700;font-size:16px;margin-top:4px}
+  .game-meta{color:var(--muted);font-size:13px}
+  .actions{display:flex;gap:10px;margin-top:8px}
+  .btn{
+    background:var(--accent);color:#071025;padding:8px 12px;border-radius:8px;font-weight:700;text-decoration:none;
+    box-shadow:0 6px 18px rgba(255,204,51,0.12);
+  }
+  .btn.secondary{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04)}
+  .back-link{display:inline-block;margin-top:18px;color:var(--muted);text-decoration:none}
+  footer{margin-top:26px;color:var(--muted);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+  <div class="container">
+    <main class="hero" role="main" aria-labelledby="cta">
+      <!-- Logo y título centrados -->
+      <div class="logo-box" aria-hidden="true">LM</div>
+      <div class="brand">
+        <h1>Nintendo Switch</h1>
+        <p class="subtext">Selecciona un juego para ver detalles y descargar</p>
+      </div>
+
+      <div id="cta" class="cta-text">JUEGOS PARA NINTENDO SWITCH</div>
+
+      <!-- Cuadrícula de juegos -->
+      <div class="games" role="list">
+        <!-- Juego 1 -->
+        <article class="game-card" role="listitem" aria-label="Juego 1">
+          <div class="cover">
+            <!-- Reemplaza img/switch-game1.jpg por la portada real en tu carpeta img/ -->
+            <img src="img/nintendo-switch-logo-free-vector.webp" alt="Portada Juego 1">
+          </div>
+          <div class="game-title">Super Ejemplo Bros</div>
+          <div class="game-meta">Aventura · 1 jugador · 2017</div>
+          <div class="actions">
+            <a class="btn" href="#" onclick="openDownload(event,'super-ejemplo')">Descargar</a>
+            <a class="btn secondary" href="#" onclick="openDetails(event,'super-ejemplo')">Detalles</a>
+          </div>
+        </article>
+
+        <!-- Juego 2 -->
+        <article class="game-card" role="listitem" aria-label="Juego 2">
+          <div class="cover">
+            <img src="img/nintendo-switch-logo-free-vector.webp" alt="Portada Juego 2">
+          </div>
+          <div class="game-title">Racing Retro Switch</div>
+          <div class="game-meta">Carreras · 1-4 jugadores · 2019</div>
+          <div class="actions">
+            <a class="btn" href="#" onclick="openDownload(event,'racing-retro')">Descargar</a>
+            <a class="btn secondary" href="#" onclick="openDetails(event,'racing-retro')">Detalles</a>
+          </div>
+        </article>
+
+        <!-- Juego 3 -->
+        <article class="game-card" role="listitem" aria-label="Juego 3">
+          <div class="cover">
+            <img src="img/nintendo-switch-logo-free-vector.webp" alt="Portada Juego 3">
+          </div>
+          <div class="game-title">Puzzle Galaxy</div>
+          <div class="game-meta">Puzzle · 1-2 jugadores · 2016</div>
+          <div class="actions">
+            <a class="btn" href="#" onclick="openDownload(event,'puzzle-galaxy')">Descargar</a>
+            <a class="btn secondary" href="#" onclick="openDetails(event,'puzzle-galaxy')">Detalles</a>
+          </div>
+        </article>
+
+        <!-- Agrega más tarjetas copiando el bloque anterior -->
+      </div>
+
+      <a class="back-link" href="index.html">← Volver al inicio</a>
+    </main>
+
+    <footer>
+      © LasandMagic · Usa este sitio solo con tus archivos y copias legales
+    </footer>
+  </div>
+
+<script>
+  function openDownload(e, id){
+    e.preventDefault();
+    // Aquí puedes redirigir a la descarga real o abrir modal
+    alert('Iniciando descarga de: ' + id);
+  }
+  function openDetails(e, id){
+    e.preventDefault();
+    // Puedes abrir una página de detalles o modal
+    alert('Abrir detalles de: ' + id);
+  }
+</script>
+</body>
+</html>
