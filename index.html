@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>LasandMagic</title>
+<style>
+  :root{
+    --bg1:#071028;
+    --bg2:#102a4a;
+    --accent:#ffcc33;
+    --card:#0f1724;
+    --glass: rgba(255,255,255,0.04);
+    --text:#e6eef8;
+    --muted:#9fb0d6;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--text);}
+  .container{max-width:1100px;margin:48px auto;padding:28px;}
+  header{display:flex;align-items:center;gap:18px}
+  .logo-box{
+    width:72px;height:72px;border-radius:12px;
+    background:linear-gradient(135deg,#ff9f1c,#ff3d7f);
+    display:flex;align-items:center;justify-content:center;font-weight:800;color:#071025;font-size:20px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.45);
+  }
+  .brand{display:flex;flex-direction:column;gap:6px}
+  .brand h1{margin:0;font-size:34px;letter-spacing:1px;}
+  .brand p{margin:0;color:var(--muted);display:flex;align-items:center;gap:10px;font-size:14px}
+
+  .hero{
+    margin-top:28px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    border-radius:12px;padding:36px;box-shadow:0 6px 30px rgba(2,6,23,0.6);
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+  }
+  .cta-text{font-weight:700;letter-spacing:2px;color:var(--accent);margin-bottom:18px}
+  .platforms{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap:20px;
+    justify-items:center;
+  }
+  .platforms{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr); /* siempre 3 columnas */
+  gap:20px;
+  justify-items:center;
+}
+@media (max-width:720px){
+  .platforms{grid-template-columns: 1fr;} /* en móviles, una por fila */
+}
+
+  .card{
+    width:260px;height:160px;border-radius:12px;background:linear-gradient(180deg,var(--card),#071025);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px;color:var(--text);
+    box-shadow:0 8px 20px rgba(2,6,23,0.6);cursor:pointer;transition:transform .18s ease,box-shadow .18s ease;
+    text-decoration:none;border:1px solid rgba(255,255,255,0.02);
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(2,6,23,0.7)}
+  .card .logo-shape{
+    width:140px;height:70px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700;font-size:18px;
+    box-shadow:inset 0 -6px 18px rgba(0,0,0,0.35);
+  }
+  .card .label{font-weight:600;color:var(--muted);font-size:14px}
+  footer{margin-top:26px;color:var(--muted);font-size:13px;text-align:center}
+
+  .logo-img {
+  max-width: 120px;
+  max-height: 70px;
+  object-fit: contain;
+}
+
+</style>
+  <div class="container">
+    <!-- Si quieres mantener header, déjalo vacío o elimina este bloque -->
+    <!-- header eliminado para centrar logo dentro del main -->
+
+    <main class="hero" role="main" aria-labelledby="cta">
+      <!-- Logo y título centrados (aquí es donde lo pones) -->
+      <div class="logo-box" aria-hidden="true">LM</div>
+      <div class="brand center">
+        <h1>LasandMagic</h1>
+        <p>Explora y descarga tus juegos retro favoritos — ¡elige tu consola!</p>
+      </div>
+    <main class="hero" role="main" aria-labelledby="cta">
+  <div id="cta" class="cta-text">HAZ CLICK PARA SER ENVIADO A LOS JUEGOS</div>
+
+  <div class="platforms" role="list">
+  <!-- Fila 1 -->
+ <div class="platforms" role="list">
+  <!-- Fila 1 -->
+  <a class="card" href="#" onclick="openPlatform(event,'PS')">
+    <img src="img/7598.png" alt="PlayStation" class="logo-img">
+    <div class="label">PlayStation</div>
+  </a>
+  <a class="card" href="#" onclick="openPlatform(event,'PC')">
+    <img src="img/pc-gamer-square-logo-image-png-701751694705789veh9j0sech.png" alt="PC" class="logo-img">
+    <div class="label">PC</div>
+  </a>
+  <a class="card" href="#" onclick="openPlatform(event,'NS')">
+    <img src="img/nintendo-switch-logo-free-vector.webp" alt="Nintendo Switch" class="logo-img">
+    <div class="label">Nintendo Switch</div>
+  </a>
+
+  <!-- Fila 2 -->
+  <a class="card" href="#" onclick="openPlatform(event,'Wii')">
+    <img src="img/Wii-Logo-PNG-Cutout.png" alt="Nintendo Wii" class="logo-img">
+    <div class="label">Nintendo Wii</div>
+  </a>
+  <a class="card" href="#" onclick="openPlatform(event,'DS')">
+    <img src="img/1000446.webp" alt="Nintendo DS" class="logo-img">
+    <div class="label">Nintendo DS</div>
+  </a>
+  <a class="card" href="#" onclick="openPlatform(event,'3DS')">
+    <img src="img/nintendo-3ds-logo-png_seeklogo-312577.png" alt="Nintendo 3DS" class="logo-img">
+    <div class="label">Nintendo 3DS</div>
+  </a>
+
+  <!-- Fila 3 -->
+  <a class="card" href="#" onclick="openPlatform(event,'GC')">
+    <img src="img/1200px-Nintendo_GameCube_Logo.svg.png" alt="Nintendo GameCube" class="logo-img">
+    <div class="label">Nintendo GameCube</div>
+  </a>
+  <a class="card" href="#" onclick="openPlatform(event,'N64')">
+    <img src="img/Nintendo-64-Logo-Vector-768x768.jpg" alt="Nintendo 64" class="logo-img">
+    <div class="label">Nintendo 64</div>
+  </a>
+  <a class="card" href="#" onclick="openPlatform(event,'PS2')">
+    <img src="img/PlayStation-2-Logo.jpg" alt="PlayStation 2" class="logo-img">
+    <div class="label">PlayStation 2</div>
+  </a>
+</div>
+
+
+</main>
+
+  </div>
+
+<script>
+  function openPlatform(e, id){
+    e.preventDefault();
+    const mapping = {
+      'PS':'/playstation.html',
+      'PC':'/pc.html',
+      'NS':'/switch.html',
+      'Wii':'/wii.html',
+      'DS':'/ds.html',
+      '3DS':'/3ds.html',
+      'GC':'/gamecube.html',
+      'N64':'/n64.html',
+      'PS2':'/ps2.html'
+    };
+    window.open(mapping[id] || '/', '_blank');
+  }
+</script>
+</body>
+</html>
