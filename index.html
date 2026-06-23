@@ -3,117 +3,75 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>LasandMagic — Retro (sin imágenes)</title>
+<title>LasandMagic — Retro</title>
 <style>
   :root{
-    --bg1:#071028;
-    --bg2:#102a4a;
-    --accent:#ffcc33;
-    --card:#0f1724;
-    --glass: rgba(255,255,255,0.04);
-    --text:#e6eef8;
-    --muted:#9fb0d6;
-    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --bg1:#071028; --bg2:#102a4a; --accent:#ffcc33; --card:#0f1724;
+    --text:#e6eef8; --muted:#9fb0d6;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   }
-  html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--text);}
+  html,body{height:100%;margin:0;color:var(--text);}
   .container{max-width:1100px;margin:48px auto;padding:28px;}
   header{display:flex;align-items:center;gap:18px}
-  .logo-box{
-    width:72px;height:72px;border-radius:12px;
-    background:linear-gradient(135deg,#ff9f1c,#ff3d7f);
-    display:flex;align-items:center;justify-content:center;font-weight:800;color:#071025;font-size:20px;
-    box-shadow:0 8px 24px rgba(0,0,0,0.45);
-  }
+  .logo-box{width:72px;height:72px;border-radius:12px;background:linear-gradient(135deg,#ff9f1c,#ff3d7f);display:flex;align-items:center;justify-content:center;font-weight:800;color:#071025;font-size:20px;box-shadow:0 8px 24px rgba(0,0,0,0.45);}
   .brand{display:flex;flex-direction:column;gap:6px}
-  .brand h1{margin:0;font-size:34px;letter-spacing:1px;}
-  .brand p{margin:0;color:var(--muted);display:flex;align-items:center;gap:10px;font-size:14px}
+  .brand h1{margin:0;font-size:34px}
+  .brand p{margin:0;color:var(--muted);font-size:14px}
 
-  .hero{
-    margin-top:28px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-    border-radius:12px;padding:36px;box-shadow:0 6px 30px rgba(2,6,23,0.6);
-    display:flex;flex-direction:column;align-items:center;text-align:center;
-  }
+  .hero{margin-top:28px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px;padding:36px;box-shadow:0 6px 30px rgba(2,6,23,0.6);display:flex;flex-direction:column;align-items:center;text-align:center;}
   .cta-text{font-weight:700;letter-spacing:2px;color:var(--accent);margin-bottom:18px}
-  .platforms{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
-  .card{
-    width:260px;height:160px;border-radius:12px;background:linear-gradient(180deg,var(--card),#071025);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px;color:var(--text);
-    box-shadow:0 8px 20px rgba(2,6,23,0.6);cursor:pointer;transition:transform .18s ease,box-shadow .18s ease;
-    text-decoration:none;border:1px solid rgba(255,255,255,0.02);
-  }
+
+  /* Grid: 3 columns */
+  .platforms{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;justify-items:center;align-items:start;}
+
+  .card{width:260px;height:160px;border-radius:12px;background:linear-gradient(180deg,var(--card),#071025);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px;color:var(--text);box-shadow:0 8px 20px rgba(2,6,23,0.6);cursor:pointer;transition:transform .18s ease,box-shadow .18s ease;text-decoration:none;border:1px solid rgba(255,255,255,0.02);}
   .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(2,6,23,0.7)}
-  .card .logo-shape{
-    width:140px;height:70px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700;font-size:18px;
-    box-shadow:inset 0 -6px 18px rgba(0,0,0,0.35);
-  }
-  .card .label{font-weight:600;color:var(--muted);font-size:14px}
+  .logo-shape{width:140px;height:70px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700;font-size:18px;box-shadow:inset 0 -6px 18px rgba(0,0,0,0.35);overflow:hidden;}
+  .logo-shape img{max-width:100%;max-height:100%;object-fit:contain;display:block;}
+  .label{font-weight:600;color:var(--muted);font-size:14px}
   footer{margin-top:26px;color:var(--muted);font-size:13px;text-align:center}
 
-  /* Decorative background characters made with CSS gradients and shapes (no external images) */
-  .bg-decor{
-    position:fixed;right:-120px;top:-60px;width:520px;height:520px;pointer-events:none;
-    background:
-      radial-gradient(circle at 20% 20%, rgba(255,255,255,0.02) 0 8%, transparent 9%),
-      radial-gradient(circle at 80% 80%, rgba(255,255,255,0.02) 0 6%, transparent 7%),
-      linear-gradient(135deg, rgba(255,255,255,0.01), transparent 40%);
-    transform:rotate(12deg);filter:blur(18px);opacity:0.9;
-  }
-
-  /* Simple responsive */
-  @media (max-width:720px){
-    .platforms{flex-direction:column;align-items:center}
-    .card{width:92%}
-    .brand h1{font-size:26px}
-  }
-</style>
-</head>
-<script>
-function openPlatform(e, id){
-  e = e || window.event;
-  if(e.preventDefault) e.preventDefault();
-
-  const mapping = {
-    'PS':'playstation.html',
-    'PC':'pc.html',
-    'NS':'switch.html',
-    'Wii':'wii.html',
-    'DS':'ds.html',
-    '3DS':'3ds.html',
-    'GC':'gamecube.html',
-    'N64':'n64.html',
-    'PS2':'ps2.html'
-  };
-
-  const target = mapping[id];
-  if(!target){
-    console.warn('ID no encontrado en mapping:', id);
-    return;
-  }
-  window.location.href = target;
+  @media (max-width:980px){ .platforms{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .platforms{grid-template-columns:1fr;} .card{width:92%} .brand h1{font-size:26px} }
+  /* Fondo responsivo con ligera borrosidad y ajuste sin estirar */
+body::before{
+  content: "";
+  position: fixed;
+  inset: 0;                         /* top:0; right:0; bottom:0; left:0 */
+  z-index: -2;                      /* detrás de todo el contenido */
+  background-image: url("img/fondo-lasandmagic.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;           /* ocupa toda la pantalla sin deformar */
+  transform: scale(1.03);           /* pequeño escalado para evitar bordes visibles */
+  filter: blur(4px) brightness(0.62); /* borrosidad ligera + oscurecer para legibilidad */
+  will-change: transform, filter;
+  pointer-events: none;
 }
 
-</script>
+/* Mantener tus decoraciones (si usas .bg-decor) por encima del fondo */
+.bg-decor{
+  z-index: -1;                       /* encima del fondo pero detrás del contenido */
+  pointer-events: none;
+}
 
+/* Reducir blur en pantallas pequeñas por rendimiento */
+@media (max-width:520px){
+  body::before{
+    filter: blur(2px) brightness(0.6);
+    transform: scale(1.01);
+  }
+}
 
-
+</style>
+</head>
 <body>
-  <div class="bg-decor" aria-hidden="true"></div>
-
   <div class="container">
     <header>
       <div class="logo-box" aria-hidden="true">LM</div>
       <div class="brand">
         <h1>LasandMagic</h1>
-        <p>
-          <!-- controller icon drawn inline with SVG -->
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 12c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7S3 15.866 3 12z" stroke="#ffcc33" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="9.5" cy="11" r="1" fill="#ffcc33"/>
-            <circle cx="14.5" cy="11" r="1" fill="#ffcc33"/>
-          </svg>
-          Explora y descarga tus juegos retro favoritos — ¡elige tu consola!
-        </p>
+        <p>Explora y descarga tus juegos retro favoritos — ¡elige tu consola!</p>
       </div>
     </header>
 
@@ -121,100 +79,94 @@ function openPlatform(e, id){
       <div id="cta" class="cta-text">HAZ CLICK PARA SER ENVIADO A LOS JUEGOS</div>
 
       <div class="platforms" role="list">
-        <a class="card" role="listitem" href="#" onclick="openPlatform(event,'PS')">
-          <div class="logo-shape" aria-hidden="true">
-            <!-- stylized PlayStation-like placeholder made with SVG text only -->
-            <svg width="120" height="48" viewBox="0 0 120 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PlayStation placeholder">
-              <rect width="120" height="48" rx="6" fill="#071a2b"/>
-              <text x="60" y="30" font-family="Inter, Arial" font-size="16" fill="#ffd27a" text-anchor="middle">PlayStation</text>
-            </svg>
-          </div>
+        <!-- PlayStation -->
+        <a class="card" role="listitem" href="#" data-id="PS">
+          <div class="logo-shape"><img src="img/7598.png" alt="PlayStation logo"></div>
           <div class="label">PlayStation</div>
         </a>
 
-        <a class="card" role="listitem" href="#" onclick="openPlatform(event,'PC')">
-          <div class="logo-shape" aria-hidden="true">
-            <svg width="120" height="48" viewBox="0 0 120 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PC placeholder">
-              <rect width="120" height="48" rx="6" fill="#0b2a3a"/>
-              <text x="60" y="30" font-family="Inter, Arial" font-size="16" fill="#9fd3ff" text-anchor="middle">PC</text>
-            </svg>
-          </div>
+        <!-- PC -->
+        <a class="card" role="listitem" href="#" data-id="PC">
+          <div class="logo-shape"><img src="img/pc-gamer-square-logo-image-png-701751694705789veh9j0sech.png" alt="PC logo"></div>
           <div class="label">PC</div>
         </a>
 
-        <a class="card" role="listitem" href="#" onclick="openPlatform(event,'NS')">
-          <div class="logo-shape" aria-hidden="true">
-            <svg width="120" height="48" viewBox="0 0 120 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Switch placeholder">
-              <rect width="120" height="48" rx="6" fill="#082a22"/>
-              <text x="60" y="30" font-family="Inter, Arial" font-size="16" fill="#a6ffcc" text-anchor="middle">Nintendo Switch</text>
-            </svg>
-          </div>
+        <!-- Nintendo Switch -->
+        <a class="card" role="listitem" href="#" data-id="NS">
+          <div class="logo-shape"><img src="img/nintendo-switch-logo-free-vector.webp" alt="Nintendo Switch logo"></div>
           <div class="label">Nintendo Switch</div>
+        </a>
+
+        <!-- Wii -->
+        <a class="card" role="listitem" href="#" data-id="Wii">
+          <div class="logo-shape"><img src="img/Wii-Logo-PNG-Cutout.png" alt="Wii logo"></div>
+          <div class="label">Nintendo Wii</div>
+        </a>
+
+        <!-- DS -->
+        <a class="card" role="listitem" href="#" data-id="DS">
+          <div class="logo-shape"><img src="img/1000446.webp" alt="DS logo"></div>
+          <div class="label">Nintendo DS</div>
+        </a>
+
+        <!-- 3DS -->
+        <a class="card" role="listitem" href="#" data-id="3DS">
+          <div class="logo-shape"><img src="img/nintendo-3ds-logo-png_seeklogo-312577.png" alt="3DS logo"></div>
+          <div class="label">Nintendo 3DS</div>
+        </a>
+
+        <!-- GameCube -->
+        <a class="card" role="listitem" href="#" data-id="GC">
+          <div class="logo-shape"><img src="img/1200px-Nintendo_GameCube_Logo.svg.png" alt="GameCube logo"></div>
+          <div class="label">GameCube</div>
+        </a>
+
+        <!-- N64 -->
+        <a class="card" role="listitem" href="#" data-id="N64">
+          <div class="logo-shape"><img src="img/Nintendo-64-Logo-Vector-768x768.jpg" alt="N64 logo"></div>
+          <div class="label">Nintendo 64</div>
+        </a>
+
+        <!-- PS2 -->
+        <a class="card" role="listitem" href="#" data-id="PS2">
+          <div class="logo-shape"><img src="img/PlayStation-2-Logo.jpg" alt="PS2 logo"></div>
+          <div class="label">PlayStation 2</div>
         </a>
       </div>
 
       <footer>Usa solo textos y gráficos generados por CSS/SVG o tus propios recursos con licencia.</footer>
     </main>
   </div>
- <a class="card" role="listitem" href="#" onclick="openPlatform(event,'Wii')">
-    <div class="logo-shape" aria-hidden="true">
-      <svg width="120" height="48" viewBox="0 0 120 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wii placeholder">
-        <rect width="120" height="48" rx="6" fill="#1a1a1a"/>
-        <text x="60" y="30" font-family="Inter, Arial" font-size="16" fill="#ffffff" text-anchor="middle">Wii</text>
-      </svg>
-    </div>
-    <div class="label">Nintendo Wii</div>
-  </a>
 
-  <a class="card" role="listitem" href="#" onclick="openPlatform(event,'DS')">
-    <div class="logo-shape" aria-hidden="true">
-      <svg width="120" height="48" viewBox="0 0 120 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DS placeholder">
-        <rect width="120" height="48" rx="6" fill="#0b2a3a"/>
-        <text x="60" y="30" font-family="Inter, Arial" font-size="16" fill="#9fd3ff" text-anchor="middle">DS</text>
-      </svg>
-    </div>
-    <div class="label">Nintendo DS</div>
-  </a>
-
-  <a class="card" role="listitem" href="#" onclick="openPlatform(event,'3DS')">
-    <div class="logo-shape" aria-hidden="true">
-      <svg width="120" height="48" viewBox="0 0 120 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="3DS placeholder">
-        <rect width="120" height="48" rx="6" fill="#082a22"/>
-        <text x="60" y="30" font-family="Inter, Arial" font-size="16" fill="#a6ffcc" text-anchor="middle">3DS</text>
-      </svg>
-    </div>
-    <div class="label">Nintendo 3DS</div>
-  </a>
-
-  <a class="card" role="listitem" href="#" onclick="openPlatform(event,'GC')">
-    <div class="logo-shape" aria-hidden="true">
-      <svg width="120" height="48" viewBox="0 0 120 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GameCube placeholder">
-        <rect width="120" height="48" rx="6" fill="#2a0b3a"/>
-        <text x="60" y="30" font-family="Inter, Arial" font-size="16" fill="#d6a6ff" text-anchor="middle">GameCube</text>
-      </svg>
-    </div>
-    <div class="label">Nintendo GameCube</div>
-  </a>
-
-  <a class="card" role="listitem" href="#" onclick="openPlatform(event,'N64')">
-    <div class="logo-shape" aria-hidden="true">
-      <svg width="120" height="48" viewBox="0 0 120 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="N64 placeholder">
-        <rect width="120" height="48" rx="6" fill="#0b2a2a"/>
-        <text x="60" y="30" font-family="Inter, Arial" font-size="16" fill="#ffcc33" text-anchor="middle">N64</text>
-      </svg>
-    </div>
-    <div class="label">Nintendo 64</div>
-  </a>
-
-  <a class="card" role="listitem" href="#" onclick="openPlatform(event,'PS2')">
-    <div class="logo-shape" aria-hidden="true">
-      <svg width="120" height="48" viewBox="0 0 120 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PS2 placeholder">
-        <rect width="120" height="48" rx="6" fill="#071a2b"/>
-        <text x="60" y="30" font-family="Inter, Arial" font-size="16" fill="#00aaff" text-anchor="middle">PS2</text>
-      </svg>
-    </div>
-    <div class="label">PlayStation 2</div>
-  </a>
-
+  <script>
+  (function(){
+    function openPlatform(e, id){
+      if(e && e.preventDefault) e.preventDefault();
+      const mapping = {
+        'PS':'playstation.html',
+        'PC':'pc.html',
+        'NS':'switch.html',
+        'Wii':'wii.html',
+        'DS':'ds.html',
+        '3DS':'3ds.html',
+        'GC':'gamecube.html',
+        'N64':'n64.html',
+        'PS2':'ps2.html'
+      };
+      const target = mapping[id];
+      if(!target){ console.warn('ruta no encontrada', id); return; }
+      window.location.href = target;
+    }
+    window.openPlatform = openPlatform;
+    document.addEventListener('DOMContentLoaded', function(){
+      document.querySelectorAll('.card[data-id]').forEach(function(el){
+        el.addEventListener('click', function(e){
+          e.preventDefault();
+          openPlatform(e, el.getAttribute('data-id'));
+        });
+      });
+    });
+  })();
+  </script>
 </body>
 </html>
