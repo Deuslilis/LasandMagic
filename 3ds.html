@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>LasandMagic — Nintendo Switch</title>
+<title>LasandMagic — Nintendo 3DS</title>
 <style>
   :root{
     --bg1:#071028;
@@ -14,6 +14,7 @@
     --muted:#9fb0d6;
     font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
+
   html,body{height:100%;margin:0;color:var(--text);}
   .container{max-width:1100px;margin:36px auto;padding:24px;}
   .logo-box{
@@ -35,7 +36,7 @@
   .cta-text{font-weight:700;letter-spacing:2px;color:var(--accent);margin:14px 0}
   .subtext{color:var(--muted);font-size:14px;margin-bottom:18px}
 
-  /* Grid de juegos */
+  /* Grid de juegos: 3 columnas */
   .games{
     width:100%;
     display:grid;
@@ -99,61 +100,95 @@
 <body>
   <div class="container">
     <main class="hero" role="main" aria-labelledby="cta">
-      <!-- Logo y título centrados -->
       <div class="logo-box" aria-hidden="true">
   <img src="img/logo-lasandmagic.png" alt="Logo LasandMagic" style="width:100%;height:100%;object-fit:contain;border-radius:inherit;">
 </div>
 
       <div class="brand">
-        <h1>Nintendo Switch</h1>
-        <p class="subtext">Selecciona un juego para ver detalles y descargar</p>
+        <h1>Nintendo 3DS</h1>
+        <p class="subtext">Juegos y clásicos de la 3DS — selecciona uno</p>
       </div>
 
-      <div id="cta" class="cta-text">JUEGOS PARA NINTENDO SWITCH</div>
+      <div id="cta" class="cta-text">JUEGOS PARA NINTENDO 3DS</div>
 
-      <!-- Cuadrícula de juegos -->
       <div class="games" role="list">
         <!-- Juego 1 -->
-        <article class="game-card" role="listitem" aria-label="Juego 1">
+        <article class="game-card" role="listitem" aria-label="The Legend of Zelda: Ocarina of Time 3D">
           <div class="cover">
-            <!-- Reemplaza img/switch-game1.jpg por la portada real en tu carpeta img/ -->
-            <img src="img/nintendo-switch-logo-free-vector.webp" alt="Portada Juego 1">
+            <img src="img/nintendo-3ds-logo-png_seeklogo-312577.png" alt="Zelda OOT 3D portada">
           </div>
-          <div class="game-title">Super Ejemplo Bros</div>
-          <div class="game-meta">Aventura · 1 jugador · 2017</div>
+          <div class="game-title">Zelda: Ocarina of Time 3D</div>
+          <div class="game-meta">Aventura · 1 jugador · 2011</div>
           <div class="actions">
-            <a class="btn" href="#" onclick="openDownload(event,'super-ejemplo')">Descargar</a>
-            <a class="btn secondary" href="#" onclick="openDetails(event,'super-ejemplo')">Detalles</a>
+            <a class="btn" href="#" onclick="openDownload(event,'zelda-oot-3d')">Descargar</a>
+            <a class="btn secondary" href="#" onclick="openDetails(event,'zelda-oot-3d')">Detalles</a>
           </div>
         </article>
 
         <!-- Juego 2 -->
-        <article class="game-card" role="listitem" aria-label="Juego 2">
+        <article class="game-card" role="listitem" aria-label="Mario Kart 7">
           <div class="cover">
-            <img src="img/nintendo-switch-logo-free-vector.webp" alt="Portada Juego 2">
+            <img src="img/nintendo-3ds-logo-png_seeklogo-312577.png" alt="Mario Kart 7 portada">
           </div>
-          <div class="game-title">Racing Retro Switch</div>
-          <div class="game-meta">Carreras · 1-4 jugadores · 2019</div>
+          <div class="game-title">Mario Kart 7</div>
+          <div class="game-meta">Carreras · 1-8 jugadores · 2011</div>
           <div class="actions">
-            <a class="btn" href="#" onclick="openDownload(event,'racing-retro')">Descargar</a>
-            <a class="btn secondary" href="#" onclick="openDetails(event,'racing-retro')">Detalles</a>
+            <a class="btn" href="#" onclick="openDownload(event,'mariokart7')">Descargar</a>
+            <a class="btn secondary" href="#" onclick="openDetails(event,'mariokart7')">Detalles</a>
           </div>
         </article>
 
         <!-- Juego 3 -->
-        <article class="game-card" role="listitem" aria-label="Juego 3">
+        <article class="game-card" role="listitem" aria-label="Fire Emblem: Awakening">
           <div class="cover">
-            <img src="img/nintendo-switch-logo-free-vector.webp" alt="Portada Juego 3">
+            <img src="img/nintendo-3ds-logo-png_seeklogo-312577.png" alt="Fire Emblem portada">
           </div>
-          <div class="game-title">Puzzle Galaxy</div>
-          <div class="game-meta">Puzzle · 1-2 jugadores · 2016</div>
+          <div class="game-title">Fire Emblem: Awakening</div>
+          <div class="game-meta">Estrategia · 1 jugador · 2012</div>
           <div class="actions">
-            <a class="btn" href="#" onclick="openDownload(event,'puzzle-galaxy')">Descargar</a>
-            <a class="btn secondary" href="#" onclick="openDetails(event,'puzzle-galaxy')">Detalles</a>
+            <a class="btn" href="#" onclick="openDownload(event,'fe-awakening')">Descargar</a>
+            <a class="btn secondary" href="#" onclick="openDetails(event,'fe-awakening')">Detalles</a>
           </div>
         </article>
 
-        <!-- Agrega más tarjetas copiando el bloque anterior -->
+        <!-- Juego 4 -->
+        <article class="game-card" role="listitem" aria-label="Luigi's Mansion: Dark Moon">
+          <div class="cover">
+            <img src="img/nintendo-3ds-logo-png_seeklogo-312577.png" alt="Luigi's Mansion portada">
+          </div>
+          <div class="game-title">Luigi's Mansion: Dark Moon</div>
+          <div class="game-meta">Aventura · 1 jugador · 2013</div>
+          <div class="actions">
+            <a class="btn" href="#" onclick="openDownload(event,'luigi-dm')">Descargar</a>
+            <a class="btn secondary" href="#" onclick="openDetails(event,'luigi-dm')">Detalles</a>
+          </div>
+        </article>
+
+        <!-- Juego 5 -->
+        <article class="game-card" role="listitem" aria-label="Monster Hunter 3 Ultimate">
+          <div class="cover">
+            <img src="img/nintendo-3ds-logo-png_seeklogo-312577.png" alt="Monster Hunter portada">
+          </div>
+          <div class="game-title">Monster Hunter 3 Ultimate</div>
+          <div class="game-meta">Acción · 1-4 jugadores · 2012</div>
+          <div class="actions">
+            <a class="btn" href="#" onclick="openDownload(event,'mh3u')">Descargar</a>
+            <a class="btn secondary" href="#" onclick="openDetails(event,'mh3u')">Detalles</a>
+          </div>
+        </article>
+
+        <!-- Juego 6 -->
+        <article class="game-card" role="listitem" aria-label="Professor Layton and the Miracle Mask">
+          <div class="cover">
+            <img src="img/nintendo-3ds-logo-png_seeklogo-312577.png" alt="Professor Layton portada">
+          </div>
+          <div class="game-title">Professor Layton: Miracle Mask</div>
+          <div class="game-meta">Puzzle · 1 jugador · 2011</div>
+          <div class="actions">
+            <a class="btn" href="#" onclick="openDownload(event,'layton-mm')">Descargar</a>
+            <a class="btn secondary" href="#" onclick="openDetails(event,'layton-mm')">Detalles</a>
+          </div>
+        </article>
       </div>
 
       <a class="back-link" href="index.html">← Volver al inicio</a>
@@ -167,12 +202,10 @@
 <script>
   function openDownload(e, id){
     e.preventDefault();
-    // Aquí puedes redirigir a la descarga real o abrir modal
     alert('Iniciando descarga de: ' + id);
   }
   function openDetails(e, id){
     e.preventDefault();
-    // Puedes abrir una página de detalles o modal
     alert('Abrir detalles de: ' + id);
   }
 </script>
