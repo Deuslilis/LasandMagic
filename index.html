@@ -1,77 +1,388 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>LasandMagic</title>
-<style>
-  :root{
-    --bg1:#071028; --bg2:#102a4a; --accent:#ffcc33; --card:#0f1724;
-    --text:#e6eef8; --muted:#9fb0d6;
-    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  }
-  html,body{height:100%;margin:0;color:var(--text);}
-  .container{max-width:1100px;margin:48px auto;padding:28px;}
-  header{display:flex;align-items:center;gap:18px}
-  .logo-box{width:72px;height:72px;border-radius:12px;background:linear-gradient(135deg,#ff9f1c,#ff3d7f);display:flex;align-items:center;justify-content:center;font-weight:800;color:#071025;font-size:20px;box-shadow:0 8px 24px rgba(0,0,0,0.45);}
-  .brand{display:flex;flex-direction:column;gap:6px}
-  .brand h1{margin:0;font-size:34px}
-  .brand p{margin:0;color:var(--muted);font-size:14px}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LasandMagic</title>
+  <!-- Font Awesome para iconos sociales -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --bg1: #071028;
+      --bg2: #102a4a;
+      --accent: #ffcc33;
+      --card: #0f1724;
+      --text: #e6eef8;
+      --muted: #9fb0d6;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      color: var(--text);
+    }
+    .container {
+      max-width: 1100px;
+      margin: 48px auto;
+      padding: 28px;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 18px
+    }
+    .logo-box {
+      width: 72px;
+      height: 72px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ff9f1c, #ff3d7f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #071025;
+      font-size: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    }
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 6px
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 34px
+    }
+    .brand p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px
+    }
 
-  .hero{margin-top:28px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px;padding:36px;box-shadow:0 6px 30px rgba(2,6,23,0.6);display:flex;flex-direction:column;align-items:center;text-align:center;}
-  .cta-text{font-weight:700;letter-spacing:2px;color:var(--accent);margin-bottom:18px}
+    .hero {
+      margin-top: 28px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+      border-radius: 12px;
+      padding: 36px;
+      box-shadow: 0 6px 30px rgba(2, 6, 23, 0.6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .cta-text {
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin-bottom: 18px
+    }
 
-  /* Grid: 3 columns */
-  .platforms{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;justify-items:center;align-items:start;}
+    /* Grid: 3 columns */
+    .platforms {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      justify-items: center;
+      align-items: start;
+    }
 
-  .card{width:260px;height:160px;border-radius:12px;background:linear-gradient(180deg,var(--card),#071025);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px;color:var(--text);box-shadow:0 8px 20px rgba(2,6,23,0.6);cursor:pointer;transition:transform .18s ease,box-shadow .18s ease;text-decoration:none;border:1px solid rgba(255,255,255,0.02);}
-  .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(2,6,23,0.7)}
-  .logo-shape{width:140px;height:70px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700;font-size:18px;box-shadow:inset 0 -6px 18px rgba(0,0,0,0.35);overflow:hidden;}
-  .logo-shape img{max-width:100%;max-height:100%;object-fit:contain;display:block;}
-  .label{font-weight:600;color:var(--muted);font-size:14px}
-  footer{margin-top:26px;color:var(--muted);font-size:13px;text-align:center}
+    /* === TARJETAS CON OVERLAY "EN PROGRESO" === */
+    .card-wrapper {
+      position: relative;
+      width: 260px;
+      height: 160px;
+    }
 
-  @media (max-width:980px){ .platforms{grid-template-columns:repeat(2,1fr);} }
-  @media (max-width:520px){ .platforms{grid-template-columns:1fr;} .card{width:92%} .brand h1{font-size:26px} }
-  /* Fondo responsivo con ligera borrosidad y ajuste sin estirar */
-body::before{
-  content: "";
-  position: fixed;
-  inset: 0;                         /* top:0; right:0; bottom:0; left:0 */
-  z-index: -2;                      /* detrás de todo el contenido */
-  background-image: url("img/fondo-lasandmagic.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;           /* ocupa toda la pantalla sin deformar */
-  transform: scale(1.03);           /* pequeño escalado para evitar bordes visibles */
-  filter: blur(4px) brightness(0.62); /* borrosidad ligera + oscurecer para legibilidad */
-  will-change: transform, filter;
-  pointer-events: none;
-}
+    .card {
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      background: linear-gradient(180deg, var(--card), #071025);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px;
+      color: var(--text);
+      box-shadow: 0 8px 20px rgba(2, 6, 23, 0.6);
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      transition: transform .18s ease, box-shadow .18s ease;
+      position: relative;
+      z-index: 1;
+    }
 
-/* Mantener tus decoraciones (si usas .bg-decor) por encima del fondo */
-.bg-decor{
-  z-index: -1;                       /* encima del fondo pero detrás del contenido */
-  pointer-events: none;
-}
+    /* Hover solo si no está inhabilitado */
+    .card-wrapper:not(.disabled) .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(2, 6, 23, 0.7);
+      cursor: pointer;
+    }
 
-/* Reducir blur en pantallas pequeñas por rendimiento */
-@media (max-width:520px){
-  body::before{
-    filter: blur(2px) brightness(0.6);
-    transform: scale(1.01);
-  }
-}
+    /* Tarjetas inhabilitadas: sin hover, cursor default */
+    .card-wrapper.disabled .card {
+      cursor: default;
+      opacity: 0.6;
+      filter: grayscale(0.3);
+    }
+    .card-wrapper.disabled .card:hover {
+      transform: none;
+      box-shadow: 0 8px 20px rgba(2, 6, 23, 0.6);
+    }
 
-</style>
+    /* Overlay "EN PROGRESO" */
+    .card-wrapper.disabled .card::after {
+      content: "EN PROGRESO";
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.65);
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: 2px;
+      border-radius: 12px;
+      backdrop-filter: blur(2px);
+      z-index: 2;
+      pointer-events: none;
+      /* para que no interfiera con clics */;
+    }
+
+    .logo-shape {
+      width: 140px;
+      height: 70px;
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: inset 0 -6px 18px rgba(0, 0, 0, 0.35);
+      overflow: hidden;
+    }
+    .logo-shape img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .label {
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 14px
+    }
+    footer {
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center
+    }
+
+    @media (max-width:980px) {
+      .platforms {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .card-wrapper {
+        width: 100%;
+        max-width: 280px;
+        height: auto;
+        aspect-ratio: 260/160;
+      }
+    }
+    @media (max-width:520px) {
+      .platforms {
+        grid-template-columns: 1fr;
+      }
+      .brand h1 {
+        font-size: 26px
+      }
+      .card-wrapper {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        aspect-ratio: 260/160;
+        margin: 0 auto;
+      }
+    }
+
+    /* Fondo responsivo */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background-image: url("img/fondo-lasandmagic.png");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      transform: scale(1.03);
+      filter: blur(4px) brightness(0.62);
+      will-change: transform, filter;
+      pointer-events: none;
+    }
+    .bg-decor {
+      z-index: -1;
+      pointer-events: none;
+    }
+    @media (max-width:520px) {
+      body::before {
+        filter: blur(2px) brightness(0.6);
+        transform: scale(1.01);
+      }
+    }
+
+    /* ==============================================
+       BARRA LATERAL DE REDES SOCIALES (FIXED)
+       ============================================== */
+    .social-sidebar {
+      position: fixed;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      z-index: 999;
+      background: rgba(7, 16, 40, 0.7);
+      backdrop-filter: blur(6px);
+      padding: 14px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .social-sidebar a {
+      color: var(--muted);
+      font-size: 24px;
+      transition: color 0.2s, transform 0.2s;
+      text-align: center;
+      display: block;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .social-sidebar a:hover {
+      color: #fff;
+      transform: scale(1.15);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Colores específicos al pasar el ratón */
+    .social-sidebar a:hover .fa-youtube {
+      color: #ff0000;
+    }
+    .social-sidebar a:hover .fa-instagram {
+      color: #e4405f;
+    }
+    .social-sidebar a:hover .fa-facebook-f {
+      color: #1877f2;
+    }
+    .social-sidebar a:hover .fa-tiktok {
+      color: #010101;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    }
+
+    /* ==============================================
+       ADAPTACIÓN PARA MÓVIL (barra horizontal abajo)
+       ============================================== */
+    @media (max-width: 768px) {
+      .social-sidebar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: auto;
+        transform: none;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px 16px;
+        border-radius: 16px 16px 0 0;
+        background: rgba(7, 16, 40, 0.85);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-bottom: none;
+        gap: 4px;
+        box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.6);
+      }
+
+      .social-sidebar a {
+        font-size: 22px;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: transparent;
+      }
+      .social-sidebar a:hover {
+        background: rgba(255, 255, 255, 0.05);
+        transform: none;
+      }
+
+      /* Añadir margen inferior al contenedor para que no tape el contenido */
+      .container {
+        padding-bottom: 80px;
+      }
+    }
+
+    /* Para pantallas muy pequeñas (menos de 400px) */
+    @media (max-width: 400px) {
+      .social-sidebar a {
+        font-size: 18px;
+        width: 36px;
+        height: 36px;
+      }
+      .social-sidebar {
+        padding: 6px 10px;
+        gap: 0;
+      }
+      .container {
+        padding-bottom: 70px;
+      }
+    }
+
+    /* Pequeño ajuste para que el footer no se solape en móvil */
+    footer {
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
+
+  <!-- ===== BARRA LATERAL DE REDES SOCIALES ===== -->
+  <div class="social-sidebar">
+    <a href="https://www.youtube.com/@lasandmagic" target="_blank" aria-label="YouTube">
+      <i class="fab fa-youtube"></i>
+    </a>
+    <a href="https://www.instagram.com/dejanta123/" target="_blank" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61584748508976" target="_blank" aria-label="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://www.tiktok.com/@deus_lilis" target="_blank" aria-label="TikTok">
+      <i class="fab fa-tiktok"></i>
+    </a>
+  </div>
+
+  <!-- ===== CONTENIDO PRINCIPAL ===== -->
   <div class="container">
     <header>
       <div class="logo-box" aria-hidden="true">
-  <img src="img/logo-lasandmagic.png" alt="Logo LasandMagic" style="width:100%;height:100%;object-fit:contain;border-radius:inherit;">
-</div>
-
+        <img src="img/logo-lasandmagic.png" alt="Logo LasandMagic" style="width:100%;height:100%;object-fit:contain;border-radius:inherit;">
+      </div>
       <div class="brand">
         <h1>LasandMagic</h1>
         <p>Explora y descarga tus juegos retro favoritos — ¡elige tu consola!</p>
@@ -82,93 +393,126 @@ body::before{
       <div id="cta" class="cta-text">HAZ CLICK PARA SER ENVIADO A LOS JUEGOS</div>
 
       <div class="platforms" role="list">
-        <!-- PlayStation -->
-        <a class="card" role="listitem" href="#" data-id="PS">
-          <div class="logo-shape"><img src="img/7598.png" alt="PlayStation logo"></div>
-          <div class="label">PlayStation</div>
-        </a>
 
-        <!-- PC -->
-        <a class="card" role="listitem" href="#" data-id="PC">
-          <div class="logo-shape"><img src="img/pc-gamer-square-logo-image-png-701751694705789veh9j0sech.png" alt="PC logo"></div>
-          <div class="label">PC</div>
-        </a>
+        <!-- PlayStation (inhabilitada) -->
+        <div class="card-wrapper disabled" role="listitem">
+          <a class="card" href="#" data-id="PS" style="pointer-events: none;">
+            <div class="logo-shape"><img src="img/7598.png" alt="PlayStation logo"></div>
+            <div class="label">PlayStation</div>
+          </a>
+        </div>
 
-        <!-- Nintendo Switch -->
-        <a class="card" role="listitem" href="#" data-id="NS">
-          <div class="logo-shape"><img src="img/nintendo-switch-logo-free-vector.webp" alt="Nintendo Switch logo"></div>
-          <div class="label">Nintendo Switch</div>
-        </a>
+        <!-- PC (inhabilitada) -->
+        <div class="card-wrapper disabled" role="listitem">
+          <a class="card" href="#" data-id="PC" style="pointer-events: none;">
+            <div class="logo-shape"><img src="img/pc-gamer-square-logo-image-png-701751694705789veh9j0sech.png" alt="PC logo"></div>
+            <div class="label">PC</div>
+          </a>
+        </div>
 
-        <!-- Wii -->
-        <a class="card" role="listitem" href="#" data-id="Wii">
-          <div class="logo-shape"><img src="img/Wii-Logo-PNG-Cutout.png" alt="Wii logo"></div>
-          <div class="label">Nintendo Wii</div>
-        </a>
+        <!-- Nintendo Switch (HABILITADA) -->
+        <div class="card-wrapper" role="listitem">
+          <a class="card" href="#" data-id="NS">
+            <div class="logo-shape"><img src="img/nintendo-switch-logo-free-vector.webp" alt="Nintendo Switch logo"></div>
+            <div class="label">Nintendo Switch</div>
+          </a>
+        </div>
 
-        <!-- DS -->
-        <a class="card" role="listitem" href="#" data-id="DS">
-          <div class="logo-shape"><img src="img/1000446.webp" alt="DS logo"></div>
-          <div class="label">Nintendo DS</div>
-        </a>
+        <!-- Wii (inhabilitada) -->
+        <div class="card-wrapper disabled" role="listitem">
+          <a class="card" href="#" data-id="Wii" style="pointer-events: none;">
+            <div class="logo-shape"><img src="img/Wii-Logo-PNG-Cutout.png" alt="Wii logo"></div>
+            <div class="label">Nintendo Wii</div>
+          </a>
+        </div>
 
-        <!-- 3DS -->
-        <a class="card" role="listitem" href="#" data-id="3DS">
-          <div class="logo-shape"><img src="img/nintendo-3ds-logo-png_seeklogo-312577.png" alt="3DS logo"></div>
-          <div class="label">Nintendo 3DS</div>
-        </a>
+        <!-- DS (inhabilitada) -->
+        <div class="card-wrapper disabled" role="listitem">
+          <a class="card" href="#" data-id="DS" style="pointer-events: none;">
+            <div class="logo-shape"><img src="img/1000446.webp" alt="DS logo"></div>
+            <div class="label">Nintendo DS</div>
+          </a>
+        </div>
 
-        <!-- GameCube -->
-        <a class="card" role="listitem" href="#" data-id="GC">
-          <div class="logo-shape"><img src="img/1200px-Nintendo_GameCube_Logo.svg.png" alt="GameCube logo"></div>
-          <div class="label">GameCube</div>
-        </a>
+        <!-- 3DS (inhabilitada) -->
+        <div class="card-wrapper disabled" role="listitem">
+          <a class="card" href="#" data-id="3DS" style="pointer-events: none;">
+            <div class="logo-shape"><img src="img/nintendo-3ds-logo-png_seeklogo-312577.png" alt="3DS logo"></div>
+            <div class="label">Nintendo 3DS</div>
+          </a>
+        </div>
 
-        <!-- N64 -->
-        <a class="card" role="listitem" href="#" data-id="N64">
-          <div class="logo-shape"><img src="img/Nintendo-64-Logo-Vector-768x768.jpg" alt="N64 logo"></div>
-          <div class="label">Nintendo 64</div>
-        </a>
+        <!-- GameCube (inhabilitada) -->
+        <div class="card-wrapper disabled" role="listitem">
+          <a class="card" href="#" data-id="GC" style="pointer-events: none;">
+            <div class="logo-shape"><img src="img/1200px-Nintendo_GameCube_Logo.svg.png" alt="GameCube logo"></div>
+            <div class="label">GameCube</div>
+          </a>
+        </div>
 
-        <!-- PS2 -->
-        <a class="card" role="listitem" href="#" data-id="PS2">
-          <div class="logo-shape"><img src="img/PlayStation-2-Logo.jpg" alt="PS2 logo"></div>
-          <div class="label">PlayStation 2</div>
-        </a>
+        <!-- N64 (inhabilitada) -->
+        <div class="card-wrapper disabled" role="listitem">
+          <a class="card" href="#" data-id="N64" style="pointer-events: none;">
+            <div class="logo-shape"><img src="img/Nintendo-64-Logo-Vector-768x768.jpg" alt="N64 logo"></div>
+            <div class="label">Nintendo 64</div>
+          </a>
+        </div>
+
+        <!-- PS2 (inhabilitada) -->
+        <div class="card-wrapper disabled" role="listitem">
+          <a class="card" href="#" data-id="PS2" style="pointer-events: none;">
+            <div class="logo-shape"><img src="img/PlayStation-2-Logo.jpg" alt="PS2 logo"></div>
+            <div class="label">PlayStation 2</div>
+          </a>
+        </div>
+
       </div>
-
     </main>
+    <footer>
+      &copy; LasandMagic — Todos los derechos reservados.
+    </footer>
   </div>
 
   <script>
-  (function(){
-    function openPlatform(e, id){
-      if(e && e.preventDefault) e.preventDefault();
-      const mapping = {
-        'PS':'playstation.html',
-        'PC':'pc.html',
-        'NS':'switch.html',
-        'Wii':'wii.html',
-        'DS':'ds.html',
-        '3DS':'3ds.html',
-        'GC':'gamecube.html',
-        'N64':'n64.html',
-        'PS2':'ps2.html'
-      };
-      const target = mapping[id];
-      if(!target){ console.warn('ruta no encontrada', id); return; }
-      window.location.href = target;
-    }
-    window.openPlatform = openPlatform;
-    document.addEventListener('DOMContentLoaded', function(){
-      document.querySelectorAll('.card[data-id]').forEach(function(el){
-        el.addEventListener('click', function(e){
-          e.preventDefault();
-          openPlatform(e, el.getAttribute('data-id'));
+    (function() {
+      function openPlatform(e, id) {
+        if (e && e.preventDefault) e.preventDefault();
+        const mapping = {
+          'PS': 'playstation.html',
+          'PC': 'pc.html',
+          'NS': 'switch.html',
+          'Wii': 'wii.html',
+          'DS': 'ds.html',
+          '3DS': '3ds.html',
+          'GC': 'gamecube.html',
+          'N64': 'n64.html',
+          'PS2': 'ps2.html'
+        };
+        const target = mapping[id];
+        if (!target) { console.warn('ruta no encontrada', id); return; }
+        window.location.href = target;
+      }
+      window.openPlatform = openPlatform;
+
+      document.addEventListener('DOMContentLoaded', function() {
+        // Solo asignamos evento a las tarjetas que NO estén dentro de un wrapper con clase "disabled"
+        document.querySelectorAll('.card-wrapper:not(.disabled) .card[data-id]').forEach(function(el) {
+          el.addEventListener('click', function(e) {
+            e.preventDefault();
+            openPlatform(e, el.getAttribute('data-id'));
+          });
+        });
+
+        // (Opcional) Para las tarjetas inhabilitadas, podemos evitar cualquier clic residual
+        document.querySelectorAll('.card-wrapper.disabled .card').forEach(function(el) {
+          el.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+          });
         });
       });
-    });
-  })();
+    })();
   </script>
+
 </body>
 </html>
