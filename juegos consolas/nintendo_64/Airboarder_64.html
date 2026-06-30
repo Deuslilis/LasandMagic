@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Airboarder 64 — LasandMagic</title>
+  <style>
+    :root{
+      --bg1:#071028; --bg2:#102a4a; --accent:#ffcc33; --card:#0f1724;
+      --text:#e6eef8; --muted:#9fb0d6;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+    html,body{height:100%;margin:0;color:var(--text);}
+    .container{max-width:1100px;margin:36px auto;padding:24px;}
+    
+    /* Fondo común */
+    body::before{
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background-image: url("img/fondo-lasandmagic.png");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      transform: scale(1.03);
+      filter: blur(4px) brightness(0.62);
+      will-change: transform, filter;
+      pointer-events: none;
+    }
+    @media (max-width:520px){
+      body::before{ filter: blur(2px) brightness(0.6); transform: scale(1.01); }
+    }
+
+    /* Header con logo */
+    header{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      margin-bottom:24px;
+    }
+    .logo-box{
+      width:72px;
+      height:72px;
+      border-radius:12px;
+      background:linear-gradient(135deg,#ff9f1c,#ff3d7f);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 8px 24px rgba(0,0,0,0.45);
+      overflow:hidden;
+    }
+    .logo-box img{ width:100%; height:100%; object-fit:contain; }
+    .brand{ display:flex; flex-direction:column; gap:4px; }
+    .brand h1{ margin:0; font-size:28px; letter-spacing:1px; }
+    .brand p{ margin:0; color:var(--muted); font-size:14px; }
+
+    /* Hero interior */
+    .hero{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:12px;
+      padding:32px 28px;
+      box-shadow:0 6px 30px rgba(2,6,23,0.6);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+    }
+
+    /* Portada y capturas */
+    .game-header{
+      display:flex;
+      flex-direction:row;
+      flex-wrap:wrap;
+      gap:30px;
+      align-items:flex-start;
+      justify-content:center;
+      width:100%;
+      margin-top:10px;
+    }
+    .cover-main{
+      flex:0 0 280px;
+      max-width:100%;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 12px 36px rgba(0,0,0,0.5);
+      background:#0b1220;
+    }
+    .cover-main img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    .info{
+      flex:1;
+      min-width:240px;
+      text-align:left;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .info h2{
+      font-size:32px;
+      margin:0 0 4px;
+      color:var(--text);
+    }
+    .info .meta{
+      color:var(--muted);
+      font-size:15px;
+      border-bottom:1px solid rgba(255,255,255,0.05);
+      padding-bottom:10px;
+    }
+    .info .descripcion{
+      line-height:1.6;
+      color:var(--text);
+      font-size:15px;
+    }
+    .info .detalles{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:6px 20px;
+      background:rgba(0,0,0,0.2);
+      padding:12px 16px;
+      border-radius:8px;
+      font-size:14px;
+    }
+    .detalles span{ color:var(--muted); }
+    .detalles strong{ color:var(--text); }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:6px;
+      justify-content:flex-start;
+    }
+    .btn{
+      background:var(--accent);
+      color:#071025;
+      padding:10px 18px;
+      border-radius:8px;
+      font-weight:700;
+      text-decoration:none;
+      box-shadow:0 6px 18px rgba(255,204,51,0.15);
+      transition:background .2s, transform .1s;
+      display:inline-block;
+      font-size:14px;
+      border: none;
+      cursor: pointer;
+    }
+    .btn:hover{ background:#e6b800; transform:scale(1.02); }
+    .btn.secondary{
+      background:transparent;
+      color:var(--text);
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:none;
+    }
+    .btn.secondary:hover{ background:rgba(255,255,255,0.04); }
+    .btn-group-label{
+      font-size:13px;
+      color:var(--muted);
+      margin-right:4px;
+      font-weight:600;
+    }
+
+    /* Galería de capturas */
+    .capturas{
+      width:100%;
+      margin-top:28px;
+      border-top:1px solid rgba(255,255,255,0.04);
+      padding-top:20px;
+    }
+    .capturas h3{
+      color:var(--muted);
+      font-weight:400;
+      font-size:16px;
+      letter-spacing:1px;
+      margin:0 0 12px;
+      text-transform:uppercase;
+    }
+    .thumb-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(140px,1fr));
+      gap:12px;
+    }
+    .thumb{
+      border-radius:8px;
+      overflow:hidden;
+      background:#0b1220;
+      box-shadow:0 4px 12px rgba(0,0,0,0.3);
+      aspect-ratio:16/9;
+      cursor:pointer;
+      transition:transform .15s;
+    }
+    .thumb:hover{ transform:scale(1.02); }
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* Navegación */
+    .navegacion{
+      margin-top:30px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:16px;
+      justify-content:center;
+    }
+    .navegacion a{
+      color:var(--muted);
+      text-decoration:none;
+      font-size:14px;
+      padding:6px 12px;
+      border-radius:6px;
+      transition:background .2s;
+    }
+    .navegacion a:hover{
+      background:rgba(255,255,255,0.04);
+      color:var(--text);
+    }
+
+    footer{
+      margin-top:32px;
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+      border-top:1px solid rgba(255,255,255,0.03);
+      padding-top:18px;
+    }
+
+    @media (max-width:700px){
+      .game-header{ flex-direction:column; align-items:center; }
+      .info{ text-align:center; }
+      .detalles{ grid-template-columns:1fr; }
+      .actions{ justify-content:center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="logo-box" aria-hidden="true">
+        <img src="img/logo-lasandmagic.png" alt="LasandMagic">
+      </div>
+      <div class="brand">
+        <h1>LasandMagic</h1>
+        <p>Juegos retro — Nintendo 64</p>
+      </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="hero" role="main">
+      <div class="game-header">
+        <!-- Portada -->
+        <div class="cover-main">
+          <img src="img/logo-lasandmagic.png" alt="Portada de Airboarder 64">
+        </div>
+
+        <!-- Información -->
+        <div class="info">
+          <h2>Airboarder 64</h2>
+          <div class="meta">Puzle · </div>
+          <div class="descripcion">Air Boarder 64 is a futuristic racing game for the Nintendo 64. It is very similar to the Tony Hawks Pro Skater series, allthough the game features hover boards instead of the usual skateboards. Various game modes are available in which you either have to win the race challenges or get a high score by performing different tricks.</div>
+          <div class="detalles">
+            <span>Desarrollador:</span> <strong>Desconocido</strong>
+            <span>Género:</span> <strong>Puzle</strong>
+            <span>Plataforma:</span> <strong>game_boy_advance</strong>
+            <span>Lanzamiento:</span> <strong></strong>
+          </div>
+
+          <!-- ===== BOTONES DE DESCARGA ===== -->
+<div class="actions">
+  
+    <div style="display:flex; flex-wrap:wrap; gap:6px; align-items:center; width:100%;">
+      <span class="btn-group-label">Europa:</span>
+      
+        
+          <a class="btn" href="https://ouo.io/LBBHRX" target="_blank">Opción 1</a>
+        
+      
+        
+          <a class="btn secondary" href="{"status":"success","message":"","shortenedUrl":"https:\/\/tpi.li\/xiY8"}" target="_blank">Opción 2</a>
+        
+      
+    </div>
+  
+</div>
+<!-- ===== FIN BOTONES ===== -->
+
+        </div>
+      </div>
+
+      <!-- Galería de capturas (opcional) -->
+      
+
+      <!-- Navegación -->
+      <div class="navegacion">
+        <a href="../consolas/.html">← Volver a Nintendo 64</a>
+        <a href="../index.html">← Inicio</a>
+        
+      </div>
+    </main>
+
+    <footer>
+      &copy; LasandMagic — Todos los derechos reservados.
+    </footer>
+  </div>
+
+  <script>
+    // (Opcional) clic en miniaturas para ampliar
+    document.querySelectorAll('.thumb').forEach(el => {
+      el.addEventListener('click', function() {
+        const imgSrc = this.querySelector('img').getAttribute('src');
+        window.open(imgSrc, '_blank');
+      });
+    });
+  </script>
+</body>
+</html>
